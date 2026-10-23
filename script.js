@@ -108,31 +108,24 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     // ==============================
-    // WEDDING BACKGROUND MUSIC
-    // ==============================
-    const song = document.getElementById("weddingSong");
 
-    if (song) {
-        song.volume = 0.5;
+const song = document.getElementById("weddingSong");
 
-        // Attempt autoplay; browsers may block sound.
-        song.play().catch(function () {
-            console.log("Autoplay blocked. Waiting for visitor interaction.");
+if (song) {
+    song.volume = 0.5;
+
+    function playWeddingSong() {
+        song.play().catch(error => {
+            console.log("Music playback blocked or file unavailable:", error);
         });
-
-        function startMusic() {
-            if (song.paused) {
-                song.play().catch(function (error) {
-                    console.error("Wedding music could not play:", error);
-                });
-            }
-        }
-
-        document.addEventListener("click", startMusic);
-        document.addEventListener("keydown", startMusic);
-        document.addEventListener("touchstart", startMusic);
     }
 
-    console.log("Wedding website loaded successfully! ❤️");
+    // Try to play automatically
+    playWeddingSong();
 
-});
+    // Retry after the visitor interacts with the page
+    document.addEventListener("click", playWeddingSong, { once: true });
+    document.addEventListener("touchstart", playWeddingSong, { once: true });
+    document.addEventListener("keydown", playWeddingSong, { once: true });
+}
+
