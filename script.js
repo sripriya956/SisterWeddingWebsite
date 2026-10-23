@@ -1,8 +1,9 @@
 
-
 document.addEventListener("DOMContentLoaded", function () {
 
-    // Wedding countdown message
+    // ==============================
+    // WEDDING COUNTDOWN MESSAGE
+    // ==============================
     const countdown = document.getElementById("countdown");
 
     if (countdown) {
@@ -10,7 +11,9 @@ document.addEventListener("DOMContentLoaded", function () {
             "Wedding date and event details coming soon! ❤️";
     }
 
-    // Smooth scrolling for navigation links
+    // ==============================
+    // SMOOTH SCROLLING
+    // ==============================
     document.querySelectorAll("nav a, .btn, .logo").forEach(function (link) {
         link.addEventListener("click", function (event) {
             const targetId = this.getAttribute("href");
@@ -20,6 +23,7 @@ document.addEventListener("DOMContentLoaded", function () {
 
                 if (target) {
                     event.preventDefault();
+
                     target.scrollIntoView({
                         behavior: "smooth",
                         block: "start"
@@ -32,16 +36,25 @@ document.addEventListener("DOMContentLoaded", function () {
     // ==============================
     // WEDDING GALLERY SLIDESHOW
     // ==============================
-    const gallerySlides = document.querySelectorAll(".gallery-slide");
-    const galleryCounter = document.getElementById("galleryCounter");
-    const prevButton = document.getElementById("prevSlide");
-    const nextButton = document.getElementById("nextSlide");
+    const gallerySlides =
+        document.querySelectorAll(".gallery-slide");
+
+    const galleryCounter =
+        document.getElementById("galleryCounter");
+
+    const prevButton =
+        document.getElementById("prevSlide");
+
+    const nextButton =
+        document.getElementById("nextSlide");
 
     let currentIndex = 0;
     let galleryTimer = null;
 
     function showPhoto(index) {
-        if (gallerySlides.length === 0) return;
+        if (gallerySlides.length === 0) {
+            return;
+        }
 
         gallerySlides[currentIndex].classList.remove("active");
 
@@ -51,6 +64,7 @@ document.addEventListener("DOMContentLoaded", function () {
         const currentPhoto = gallerySlides[currentIndex];
         const img = currentPhoto.querySelector("img");
 
+        // Restart image animation
         if (img) {
             img.style.animation = "none";
             void img.offsetWidth;
@@ -78,7 +92,8 @@ document.addEventListener("DOMContentLoaded", function () {
     }
 
     if (gallerySlides.length > 0) {
-        // Ensure the first photo is visible
+
+        // Display the first image
         gallerySlides.forEach(function (slide, index) {
             slide.classList.toggle("active", index === 0);
         });
@@ -88,6 +103,7 @@ document.addEventListener("DOMContentLoaded", function () {
                 `1 / ${gallerySlides.length}`;
         }
 
+        // Next image button
         if (nextButton) {
             nextButton.addEventListener("click", function () {
                 nextPhoto();
@@ -95,6 +111,7 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
 
+        // Previous image button
         if (prevButton) {
             prevButton.addEventListener("click", function () {
                 showPhoto(currentIndex - 1);
@@ -102,30 +119,54 @@ document.addEventListener("DOMContentLoaded", function () {
             });
         }
 
+        // Automatically change image every 4 seconds
         startGallery();
+
     } else {
-        console.warn("No gallery slides found. Check .gallery-slide in index.html");
+        console.warn(
+            "No gallery slides found. Check .gallery-slide in index.html"
+        );
     }
 
     // ==============================
+    // WEDDING BACKGROUND MUSIC
+    // ==============================
+    const song = document.getElementById("weddingSong");
 
-const song = document.getElementById("weddingSong");
+    if (song) {
+        song.volume = 0.5;
 
-if (song) {
-    song.volume = 0.5;
+        function playWeddingSong() {
+            if (song.paused) {
+                song.play().catch(function (error) {
+                    console.log(
+                        "Wedding music could not start:",
+                        error
+                    );
+                });
+            }
+        }
 
-    function playWeddingSong() {
-        song.play().catch(error => {
-            console.log("Music playback blocked or file unavailable:", error);
+        // Attempt automatic playback
+        playWeddingSong();
+
+        // Retry when the visitor interacts with the website
+        document.addEventListener("click", playWeddingSong, {
+            once: true
+        });
+
+        document.addEventListener("touchstart", playWeddingSong, {
+            once: true
+        });
+
+        document.addEventListener("keydown", playWeddingSong, {
+            once: true
         });
     }
 
-    // Try to play automatically
-    playWeddingSong();
+    // ==============================
+    // WEBSITE READY
+    // ==============================
+    console.log("Wedding website loaded successfully! ❤️");
 
-    // Retry after the visitor interacts with the page
-    document.addEventListener("click", playWeddingSong, { once: true });
-    document.addEventListener("touchstart", playWeddingSong, { once: true });
-    document.addEventListener("keydown", playWeddingSong, { once: true });
-}
-
+});
