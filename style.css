@@ -63,7 +63,7 @@ nav a:hover {
             rgba(70, 0, 20, 0.35),
             rgba(70, 0, 20, 0.45)
         ),
-        url("weddingbgimage.jpg") center center / cover no-repeat;
+        url("./weddingbgimage.jpeg") center center / cover no-repeat;
 
     color: white;
 }
