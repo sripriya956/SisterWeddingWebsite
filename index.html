@@ -94,47 +94,52 @@
         </div>
     </section>
 
-    <!-- Gallery Section -->
-    <section id="gallery" class="section gallery-section">
-        <p class="small-heading">MEMORIES AND MOMENTS</p>
-        <h2 class="section-title">Wedding Gallery</h2>
 
-        
-		<div class="gallery-container">
- 
-		    <div class="gallery-item">
-		        <img src="bride.jpeg" alt="Bride Photo">
-		        <h3>Bride</h3>
-		    </div>
+	<!-- Automatic Wedding Background Music -->
+	<audio id="weddingSong" loop preload="auto">
+	    <source src="./music/wedding-song.mp3" type="audio/mpeg">
+	</audio>
+	<!-- Gallery Section -->
+	<section id="gallery" class="section gallery-section">
+	    <p class="small-heading">MEMORIES AND MOMENTS</p>
+	    <h2 class="section-title">Wedding Gallery</h2>
 
-		    <div class="gallery-item">
-		        <img src="groom.jpeg" alt="Groom Photo">
-		        <h3>Groom</h3>
-		    </div>
+	    <div class="gallery-slideshow">
 
-		</div>
-	
+	        <div class="gallery-slide active">
+	            <img src="images/bride.jpeg" alt="Beautiful Bride">
+	            <div class="slide-caption">Beautiful Bride ❤️</div>
+	        </div>
 
-		    <div class="gallery-item">
-		        <img src="together.jpeg"
-		             alt="Bride and groom together">
-		        <h3>Beautiful Moments</h3>
-		    </div>
+	        <div class="gallery-slide">
+	            <img src="images/groom.jpeg" alt="Handsome Groom">
+	            <div class="slide-caption">Handsome Groom ❤️</div>
+	        </div>
 
-		    <div class="gallery-item">
-		        <img src="family.jpeg"
-		             alt="Our lovely family">
-		        <h3>Family Memories</h3>
-		    </div>
+	        <div class="gallery-slide">
+	            <img src="images/together.jpeg" alt="Bride and Groom Together">
+	            <div class="slide-caption">Made for Each Other 💕</div>
+	        </div>
 
-		    <div class="gallery-item">
-		        <img src="family2.jpeg"
-		             alt="Special  memory">
-		        <h3>Memories Forever</h3>
-		    </div>
+	        <div class="gallery-slide">
+	            <img src="images/family.jpeg" alt="Our Lovely Family">
+	            <div class="slide-caption">Family Happiness ❤️</div>
+	        </div>
 
-		</div>
+	        <div class="gallery-slide">
+	            <img src="images/family2.jpeg" alt="Special Wedding Memories">
+	            <div class="slide-caption">Memories Forever ✨</div>
+	        </div>
 
+	        <button class="gallery-control prev" id="prevSlide"
+	                aria-label="Previous photo">&#10094;</button>
+
+	        <button class="gallery-control next" id="nextSlide"
+	                aria-label="Next photo">&#10095;</button>
+
+	        <div class="gallery-counter" id="galleryCounter">1 / 5</div>
+	    </div>
+	</section>
 
     <!-- About Section -->
     <section id="about" class="section about-section">
