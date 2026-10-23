@@ -333,3 +333,67 @@ nav a:hover {
     display: block;
     opacity: 1;
 }
+
+.gallery-slideshow {
+    position: relative;
+    width: 95%;
+    max-width: 1000px;
+    height: 600px;
+    margin: 30px auto;
+    overflow: hidden;
+    background: #fffaf3;
+    border-radius: 15px;
+}
+
+.gallery-slide {
+    display: none;
+    width: 100%;
+    height: 100%;
+}
+
+.gallery-slide.active {
+    display: block;
+    animation: galleryFade 0.8s ease;
+}
+
+.gallery-slide img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+}
+
+@keyframes galleryFade {
+    from { opacity: 0.3; }
+    to { opacity: 1; }
+}
+
+.gallery-controls {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 25px;
+    margin: 15px auto 30px;
+}
+
+.gallery-controls button {
+    cursor: pointer;
+    border: none;
+    border-radius: 50%;
+    width: 42px;
+    height: 42px;
+    background: #8b1e3f;
+    color: white;
+    font-size: 20px;
+}
+
+#galleryCounter {
+    color: #8b1e3f;
+    font-weight: bold;
+}
+
+@media (max-width: 600px) {
+    .gallery-slideshow {
+        height: 400px;
+    }
+}
