@@ -36,97 +36,59 @@ document.addEventListener("DOMContentLoaded", function () {
     // ==============================
     // WEDDING GALLERY SLIDESHOW
     // ==============================
-    const gallerySlides =
-        document.querySelectorAll(".gallery-slide");
+    
+const gallerySlides = document.querySelectorAll(".gallery-slide");
+const galleryCounter = document.getElementById("galleryCounter");
+const prevButton = document.getElementById("prevSlide");
+const nextButton = document.getElementById("nextSlide");
 
-    const galleryCounter =
-        document.getElementById("galleryCounter");
+let currentIndex = 0;
+let galleryTimer = null;
 
-    const prevButton =
-        document.getElementById("prevSlide");
+function showPhoto(index) {
+    if (gallerySlides.length === 0) return;
 
-    const nextButton =
-        document.getElementById("nextSlide");
+    currentIndex =
+        (index + gallerySlides.length) % gallerySlides.length;
 
-    let currentIndex = 0;
-    let galleryTimer = null;
+    gallerySlides.forEach(function (slide, i) {
+        slide.classList.toggle("active", i === currentIndex);
+    });
 
-    function showPhoto(index) {
-        if (gallerySlides.length === 0) {
-            return;
-        }
-
-        gallerySlides[currentIndex].classList.remove("active");
-
-        currentIndex =
-            (index + gallerySlides.length) % gallerySlides.length;
-
-        const currentPhoto = gallerySlides[currentIndex];
-        const img = currentPhoto.querySelector("img");
-
-        // Restart image animation
-        if (img) {
-            img.style.animation = "none";
-            void img.offsetWidth;
-            img.style.animation = "";
-        }
-
-        currentPhoto.classList.add("active");
-
-        if (galleryCounter) {
-            galleryCounter.textContent =
-                `${currentIndex + 1} / ${gallerySlides.length}`;
-        }
+    if (galleryCounter) {
+        galleryCounter.textContent =
+            `${currentIndex + 1} / ${gallerySlides.length}`;
     }
+}
 
-    function nextPhoto() {
-        showPhoto(currentIndex + 1);
+function startGallery() {
+    clearInterval(galleryTimer);
+
+    if (gallerySlides.length > 1) {
+        galleryTimer = setInterval(function () {
+            showPhoto(currentIndex + 1);
+        }, 4000);
     }
+}
 
-    function startGallery() {
-        clearInterval(galleryTimer);
+if (gallerySlides.length > 0) {
+    showPhoto(0);
+    startGallery();
 
-        if (gallerySlides.length > 1) {
-            galleryTimer = setInterval(nextPhoto, 4000);
-        }
-    }
-
-    if (gallerySlides.length > 0) {
-
-        // Display the first image
-        gallerySlides.forEach(function (slide, index) {
-            slide.classList.toggle("active", index === 0);
+    if (nextButton) {
+        nextButton.addEventListener("click", function () {
+            showPhoto(currentIndex + 1);
+            startGallery();
         });
-
-        if (galleryCounter) {
-            galleryCounter.textContent =
-                `1 / ${gallerySlides.length}`;
-        }
-
-        // Next image button
-        if (nextButton) {
-            nextButton.addEventListener("click", function () {
-                nextPhoto();
-                startGallery();
-            });
-        }
-
-        // Previous image button
-        if (prevButton) {
-            prevButton.addEventListener("click", function () {
-                showPhoto(currentIndex - 1);
-                startGallery();
-            });
-        }
-
-        // Automatically change image every 4 seconds
-        startGallery();
-
-    } else {
-        console.warn(
-            "No gallery slides found. Check .gallery-slide in index.html"
-        );
     }
+
+    if (prevButton) {
+        prevButton.addEventListener("click", function () {
+            showPhoto(currentIndex - 1);
+            startGallery();
+        });
+    }
+}
 
     // ==============================
     // WEDDING BACKGROUND MUSIC
