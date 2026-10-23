@@ -49,6 +49,7 @@ nav a:hover {
     color: #f8d98a;
 }
 
+
 /* Wedding Invitation Background */
 .hero {
     min-height: 90vh;
@@ -58,12 +59,17 @@ nav a:hover {
     text-align: center;
     padding: 70px 20px;
 
-    background:
+    background-color: #641e2b;
+    background-image:
         linear-gradient(
             rgba(70, 0, 20, 0.35),
             rgba(70, 0, 20, 0.45)
         ),
-        url("./weddingbgimage.jpeg") center center / cover no-repeat;
+        url("./weddingbgimage.jpg");
+
+    background-position: center center;
+    background-size: cover;
+    background-repeat: no-repeat;
 
     color: white;
 }
