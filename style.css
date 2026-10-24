@@ -203,6 +203,28 @@ nav a:hover {
     margin: 5px 0;
 }
 
+/* Clickable wedding event cards */
+.event-card {
+    display: block;
+    color: inherit;
+    text-decoration: none;
+    cursor: pointer;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.event-card:hover {
+    transform: translateY(-7px);
+    box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+}
+
+.event-link {
+    display: inline-block;
+    margin-top: 12px;
+    color: #a83250;
+    font-weight: bold;
+}
+
+
 
 
 /* Tablet */
